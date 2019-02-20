@@ -1,0 +1,32 @@
+{
+  "name": "snapsuzun/yii2-sqs",
+  "description": "Yii2 Amazon SQS watcher extension for handle messages from SQS queues",
+  "type": "yii2-extension",
+  "keywords": ["yii", "sqs", "amazon", "sqs", "watcher"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Georgii Nevzorov",
+      "email": "nevzorovgosha@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "yiisoft/yii2": "~2.0.13",
+    "aws/aws-sdk-php": "^3.0@dev",
+    "ext-shmop": "*",
+    "ext-pcntl": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "snapsuzun\\sqs\\": "src"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
+}
