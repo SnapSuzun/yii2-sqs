@@ -2,7 +2,7 @@
 
 namespace snapsuzun\sqs\watcher;
 
-use snapsuzun\sqs\Client;
+use snapsuzun\sqs\SqsClient;
 use snapsuzun\sqs\watcher\events\DeleteErrorEvent;
 use Yii;
 use yii\base\Application;
@@ -42,7 +42,7 @@ class Watcher extends Component implements BootstrapInterface
     public $commandOptions = [];
 
     /**
-     * @var string|array|Client
+     * @var string|array|SqsClient|callable
      */
     public $sqsClient = 'sqsClient';
 
@@ -69,7 +69,10 @@ class Watcher extends Component implements BootstrapInterface
         if (!is_a($this->commandClass, Command::class, true)) {
             throw new InvalidConfigException('commandClass should be instance of ' . Command::class);
         }
-        $this->sqsClient = Instance::ensure($this->sqsClient, Client::class);
+        if (is_callable($this->sqsClient)) {
+            $this->sqsClient = call_user_func($this->sqsClient);
+        }
+        $this->sqsClient = Instance::ensure($this->sqsClient, SqsClient::class);
     }
 
     /**

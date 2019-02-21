@@ -2,7 +2,7 @@
 
 namespace snapsuzun\sqs\watcher;
 
-use snapsuzun\sqs\Client;
+use snapsuzun\sqs\SqsClient;
 
 /**
  * Interface HandlerInterface
@@ -13,7 +13,7 @@ interface HandlerInterface
     /**
      * @param array $messages
      * @param array $receiptHandlers
-     * @param Client $client
+     * @param SqsClient $client
      */
-    public function handleMessages(array $messages, array &$receiptHandlers, Client $client);
+    public function handleMessages(array $messages, array &$receiptHandlers, SqsClient $client);
 }

@@ -41,6 +41,20 @@ class Command extends Controller
     /**
      * @inheritdoc
      */
+    public function beforeAction($action)
+    {
+        if ($this->canIsolate($action->id) && $this->isolate) {
+            $this->watcher->commandHandler = [$this, 'handleMessages'];
+        } else {
+            $this->watcher->commandHandler = null;
+        }
+
+        return parent::beforeAction($action);
+    }
+
+    /**
+     * @inheritdoc
+     */
     protected function isWorkerAction($actionID)
     {
         return in_array($actionID, ['run', 'listen'], true);
@@ -78,7 +92,7 @@ class Command extends Controller
      * @throws \yii\base\InvalidConfigException
      * @throws \Exception
      */
-    protected function handleMessages(array $messages, array &$receiptHandlers)
+    public function handleMessages(array $messages, array &$receiptHandlers)
     {
         // Разделяемая память, в которую будет скидываться измененный массив $receiptHandlers
         $sharedMemory = shmop_open(0, 'c', 0644, (count($receiptHandlers) * 512) + 5);

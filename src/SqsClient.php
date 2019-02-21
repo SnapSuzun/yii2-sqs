@@ -6,10 +6,10 @@ namespace snapsuzun\sqs;
 use Aws\Sqs\SqsClient as BaseSqsClient;
 
 /**
- * Class Client
+ * Class SqsClient
  * @package snapsuzun\sqs
  */
-class Client extends BaseSqsClient
+class SqsClient extends BaseSqsClient
 {
     /**
      * @var null|string

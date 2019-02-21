@@ -33,7 +33,7 @@ return [
     //....
     'components' => [
         'sqsClient' => function () {
-            return new \snapsuzun\sqs\Client([
+            return new \snapsuzun\sqs\SqsClient([
                 'cridentials => [
                     'key' => 'Api key of Amazon AWS',
                     'secret' => 'Secret key of Amazon AWS'
@@ -50,7 +50,7 @@ return [
         'sqsWatcher' => [
             'class' => '\snapsuzun\sqs\watcher\Watcher',
             'queueName' => 'queue',
-            'handler' => function (array $messages, array &$receiptHandlers, \snapsuzun\sqs\Client $client) {
+            'handler' => function (array $messages, array &$receiptHandlers, \snapsuzun\sqs\SqsClient $client) {
                 // handle messages                
             }
         ],
@@ -73,9 +73,9 @@ class ExampleHandler implements \snapsuzun\sqs\watcher\HandlerInterface
         /**
          * @param array $messages
          * @param array $receiptHandlers
-         * @param \snapsuzun\sqs\Client $client
+         * @param \snapsuzun\sqs\SqsClient $client
          */
-        public function handleMessages(array $messages, array &$receiptHandlers, \snapsuzun\sqs\Client $client)
+        public function handleMessages(array $messages, array &$receiptHandlers, \snapsuzun\sqs\SqsClient $client)
         {
             // handle messages
         }
