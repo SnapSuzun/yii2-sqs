@@ -14,9 +14,12 @@
     "php": ">=7.1",
     "yiisoft/yii2": "~2.0.13",
     "aws/aws-sdk-php": "^3.0@dev",
-    "ext-shmop": "*",
-    "ext-pcntl": "*",
+    "symfony/process": "*",
     "ext-json": "*"
+  },
+  "suggest": {
+    "ext-shmop": "*",
+    "ext-pcntl": "*"
   },
   "autoload": {
     "psr-4": {
